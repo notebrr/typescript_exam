@@ -1,0 +1,59 @@
+#root {
+  max-width: 1280px;
+  margin-top: 0px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 0px;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  will-change: filter;
+  transition: filter 300ms;
+  margin:0px;
+  padding-top: 0px;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+h1 {
+  color: black;
+}
+
+.searchField{
+  background-color: white;
+  color:black;
+  height: 20px;
+  width: 200px;
+  border-radius: 5px;
+  box-shadow: 0 0 1px rgba(34, 25, 25, 0.4);
+}
+
+.searchField:focus{
+  outline: none;
+  box-shadow: 0 0 2px rgba(34, 25, 25, 1);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 180px;
+}
