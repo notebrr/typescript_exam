@@ -11,18 +11,15 @@ import cors from 'cors';
 import typeDefs from './graphql_schemas';
 import Mutation from './resolvers/mutation';
 import Query from './resolvers/query';
-import Category from './resolvers/category';
-import Book from './resolvers/book';
-import Rating from './resolvers/rating';
-import { books, categories, ratings } from './data';
+import Movie from './resolvers/query';
+import { movies } from './data';
 import usersRouter from './routes/users';
 
 const app = express();
 
 interface MyContext {
-  books: typeof books;
-  categories: typeof categories;
-  ratings: typeof ratings;
+  movies: typeof movies;
+
 }
 
 
@@ -31,9 +28,7 @@ const server = new ApolloServer<MyContext>({
   typeDefs,
   resolvers: {
     Query,
-    Book,
-    Category,
-    Rating,
+    Movie,
     Mutation,
   },
   plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
@@ -48,7 +43,7 @@ cors<cors.CorsRequest>(),
 json(),
 expressMiddleware(server, {
   context: async() => ({
-    books, categories, ratings
+    movies
 })},
 )
 );
