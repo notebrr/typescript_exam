@@ -1,22 +1,31 @@
 import { useState } from 'react'
 import myLogo from './assets/logo.png'
 import './App.css'
+import MovieCard from "./components/MovieCard";
+import Login from "./components/Login";
+import { ApolloClient, InMemoryCache, ApolloProvider, gql } from '@apollo/client';
+import {BrowserRouter, Route, Routes} from "react-router-dom";
+
+
+const client = new ApolloClient({
+    uri: 'http://localhost:4000/graphql',
+    cache: new InMemoryCache(),
+});
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <div className="App">
-      <div>
-          <a href="/">
-              <img src={myLogo} className="app logo" alt="App logo" />
-          </a>
-      </div>
-      <h1>Movie app</h1>
-      <div className="card">
-          <input type="text" className={"searchField"} autoFocus={true} placeholder={"Search movie"}/>
-      </div>
 
+        <BrowserRouter>
+            <ApolloProvider client={client}>
+                <Routes>
+                    <Route path="/" element={<MovieCard />}/>
+
+                </Routes>
+            </ApolloProvider>
+
+        </BrowserRouter>
     </div>
   )
 }
