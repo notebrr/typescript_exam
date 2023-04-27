@@ -11,7 +11,6 @@ import cors from 'cors';
 import typeDefs from './schema/graphql_schemas';
 import Mutation from './resolvers/mutation';
 import Query from './resolvers/query';
-import Movie from './resolvers/query';
 import { movies } from './data';
 import usersRouter from './routes/users';
 
@@ -28,7 +27,6 @@ const server = new ApolloServer<MyContext>({
   typeDefs,
   resolvers: {
     Query,
-    Movie,
     Mutation,
   },
   plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
