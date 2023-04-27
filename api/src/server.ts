@@ -8,7 +8,7 @@ import body_parser_pkg from 'body-parser'; // import { json } from 'body-parser'
 const { json } = body_parser_pkg;
 import express from 'express';
 import cors from 'cors';
-import typeDefs from './graphql_schemas';
+import typeDefs from './schema/graphql_schemas';
 import Mutation from './resolvers/mutation';
 import Query from './resolvers/query';
 import Movie from './resolvers/query';
