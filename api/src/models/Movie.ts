@@ -1,0 +1,1 @@
+// mogoose schema for movie
