@@ -1,9 +1,10 @@
 import express from 'express';
 import { ApolloServer } from 'apollo-server-express';
-import mongoose from 'mongoose';
 import typeDefs from './schema/graphql_schemas';
 import resolvers from './resolvers/query';
 import { movies } from './data';
+
+const mongoose = require('mongoose');
 
 const startServer = async () => {
     const app = express();
