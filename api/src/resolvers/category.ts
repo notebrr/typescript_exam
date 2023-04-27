@@ -4,3 +4,5 @@ export default {
   // The Category resolver will be called when we query for a category, and the Category.books field will be resolved.
     books: (parent:Category, _args:never, context:Context) => context.books.filter((book) => book.categoryId === parent.id),
 }
+
+//rf
