@@ -1,11 +1,6 @@
 import mongoose from 'mongoose';
 
 const movieSchema = new mongoose.Schema({
-    id: {
-        type: String,
-        required: true,
-        unique: true
-    },
     title: {
         type: String,
         required: true
@@ -24,6 +19,6 @@ const movieSchema = new mongoose.Schema({
     },
 });
 
-const Movie = mongoose.model('Movie', movieSchema);
+const movieModel = mongoose.model('Movie', movieSchema);
 
-export default Movie;
+export default movieModel;

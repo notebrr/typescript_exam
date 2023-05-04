@@ -6,12 +6,7 @@ export default {
       movies{
         id
         title
-        year
-        genre
-        description
-        director
-        posterUrl
       }
     }
-  `,
-}
+  `;
+
