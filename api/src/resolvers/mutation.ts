@@ -1,54 +1,38 @@
-// import { books, ratings } from '../data';
-import { Book, Rating, Context, Args } from '../types';
-  export default {
-    createBook: (_parent:Book, { input }:Args, {books}:Context) => {
-      if('author' in input){ // input is a Book
-        const newBook: Book = {
-          id: String(books.length + 1),
-          title: input.title,
-          author: input.author,
-          categoryId: input.categoryId,
-        };
-        console.log('input: ', input, newBook);
-        books.push(newBook);
-        return newBook;
-      } else {
-        return null;
-      }
-      
-    },
-    createRating: (_parent:never, { input }:Args, {ratings}:Context) => {
-      if('value' in input){ // input is a Rating
-      const newRating:Rating = {
-        id: String(ratings.length + 1),
-        value: input.value,
+// import { movies, ratings } from '../data';
+import { Movie, Context, Args } from '../types';
+
+export default {
+  createMovie: (_parent: undefined, { input }: Args, { movies }: Context) => {
+    if ('director' in input) {
+      const newMovie: Movie = {
+        id: String(movies.length + 1),
         title: input.title,
-        description: input.description,
-        bookId: input.bookId,
+        director: input.director,
       };
-      console.log('rating input: ', input, newRating);
-      ratings.push(newRating);
-      return newRating;
+      movies.push(newMovie);
+      return newMovie;
     } else {
       return null;
     }
-    },
-    deleteBook: (_parent:never, { id }:Args, {books}:Context) => {
-      const index = books.findIndex(person => person.id === id);
-      if (index === -1) {
-        return false; // person not found
-      }
-      books.splice(index, 1);
-      return true; // deletion successful
-    },
-    updateBook: (_parent: never, { id, input }:Args, {books}:Context) => {
-      const index = books.findIndex(person => person.id === id);
-      if (index === -1) {
-        return null; // person not found
-      }
-      const book = books[index];
-      const updatedBook = { ...book, ...input };
-      books[index] = updatedBook;
-      return updatedBook;
+  },
+
+  deleteMovie: (_parent: never, { id }: Args, { movies }: Context) => {
+    const index = movies.findIndex(movie => movie.id === id);
+    if (index === -1) {
+      return false;
     }
-  }
+    movies.splice(index, 1);
+    return true;
+  },
+
+  updateMovie: (_parent: never, { id, input }: Args, { movies }: Context) => {
+    const index = movies.findIndex(movie => movie.id === id);
+    if (index === -1) {
+      throw new Error('Movie not found');
+    }
+    const movie = movies[index];
+    const updatedMovie = { ...movie, ...input };
+    movies[index] = updatedMovie;
+    return updatedMovie;
+  },
+};

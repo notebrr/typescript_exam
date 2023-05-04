@@ -1,86 +1,42 @@
-const books = [
+const movies = [
   {
     id: '1',
-    title: 'The Awakening',
-    author: 'Kate Chopin',
-    url: 'https://m.media-amazon.com/images/I/41VHyX7o+LL._SL160_.jpg',
-    description: 'The Awakening is a novel by Kate Chopin, first published in 1899. Set in New Orleans and on the Louisiana Gulf coast at the end of the 19th century.',
-    categoryId: '1',
+    title: 'Inception',
+    director: 'Christopher Nolan',
+    url: 'https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_UY1200_CR90,0,630,1200_AL_.jpg',
+    description: 'A skilled extractor is offered a chance to regain his old life as payment for a task considered to be impossible.',
   },
   {
     id: '2',
-    title: 'City of Glass',
-    author: 'Paul Auster',
-    url: 'https://images.isbndb.com/covers/36/05/9780312423605.jpg',
-    description: 'City of Glass is a 1985 novel by American writer Paul Auster. It is the third book in Auster\'s New York Trilogy, preceded by Ghosts and The Locked Room. The novel is a detective story, and is set in New York City. The novel was adapted into a film of the same name in 1998.',
-    categoryId: '1',
-  },{
+    title: 'The Dark Knight',
+    director: 'Christopher Nolan',
+    url: 'https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_UY1200_CR90,0,630,1200_AL_.jpg',
+    description: 'When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.',
+  },
+  {
     id: '3',
-    title: 'The Hobbit',
-    author: 'J.R.R. Tolkien',
-    url: 'https://images.isbndb.com/covers/82/27/9780547928227.jpg',
-    description: 'The Hobbit, or There and Back Again is a children\'s fantasy novel by English author J. R. R. Tolkien. It was published on 21 September 1937 to wide critical acclaim, being nominated for the Carnegie Medal and awarded a prize from the New York Herald Tribune for best juvenile fiction. The book remains popular and is recognized as a classic in children\'s literature.',
-    categoryId: '2',
+    title: 'Interstellar',
+    director: 'Christopher Nolan',
+    url: 'https://m.media-amazon.com/images/M/MV5BZjdkOTU3MDktN2IxOS00OGEyLWFmMjktY2FiMmZkNWIyODZiXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_UY1200_CR90,0,630,1200_AL_.jpg',
+    description: 'A team of explorers travel through a wormhole in space in an attempt to ensure humanity\'s survival.',
   },
   {
     id: '4',
-    title: 'The Brothers Karamazov',
-    author: 'Fyodor Dostoevsky',
-    url: 'https://m.media-amazon.com/images/I/81XwoNcQbwS._AC_UY436_QL65_.jpg',
-    description: 'The Brothers Karamasov is a murder mystery, a courtroom drama, and an exploration of erotic rivalry in a series of triangular love affairs involving the “wicked and sentimental” Fyodor Pavlovich Karamazov and his three sons―the impulsive and sensual Dmitri; the coldly rational Ivan; and the healthy, red-cheeked young novice Alyosha. Through the gripping events of their story, Dostoevsky portrays the whole of Russian life, is social and spiritual striving, in what was both the golden age and a tragic turning point in Russian culture.',
-    categoryId: '3',
+    title: 'The Matrix',
+    director: 'Lana and Lilly Wachowski',
+    url: 'https://m.media-amazon.com/images/M/MV5BNzQzOTk3OTAtNDQ0Zi00ZTVkLWI0MTEtMDllZjNkYzNjNTc4L2ltYWdlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_UX182_CR0,0,182,268_AL_.jpg',
+    description: 'A computer hacker learns from mysterious rebels about the true nature of his reality and his role in the war against its controllers.',
   },
   {
     id: '5',
-    title: 'War and Peace',
-    author: 'Leo Tolstoy',
-    url: 'https://m.media-amazon.com/images/I/41sUdLMtUuL.jpg',
-    description: 'War and Peace is a novel by the Russian author Leo Tolstoy. It is regarded as a central work of world literature and one of Tolstoys finest literary achievements. The novel chronicles the history of the French invasion of Russia and the impact of the Napoleonic era on Tsarist society through the stories of five Russian aristocratic families. Portions of an earlier version, titled The Year 1805, were serialized in The Russian Messenger from 1865 to 1867',
-    categoryId: '3',
-  },
-  {
-    id: '6',
-    title: 'Gullivers Travels',
-    author: 'Jonathan Swift',
-    url: 'https://m.media-amazon.com/images/I/41kLr-bPQIL._SY346_.jpg',
-    description: 'Gulliver’s Travels, original title Travels into Several Remote Nations of the World, four-part satirical work by Anglo-Irish author Jonathan Swift, published anonymously in 1726 as Travels into Several Remote Nations of the World. A keystone of English literature, it was one of the books that gave birth to the novel form, though it did not yet have the rules of the genre as an organizing tool. A parody of the then popular travel narrative, Gulliver’s Travels combines adventure with savage satire, mocking English customs and the politics of the day.',
-    categoryId: '2',
+    title: 'The Shawshank Redemption',
+    director: 'Frank Darabont',
+    url: 'https://m.media-amazon.com/images/M/MV5BMDFkYTc0MGEtZmNhMC00ZDIzLWFmNTEtODM1ZmRlYWMwMWFmXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_UY1200_CR90,0,630,1200_AL_.jpg',
+    description: 'Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.',
   },
 ];
 
-const categories = [
-  {
-    id: '1',
-    name: 'Fantasy',
-  },
-  {
-    id: '2',
-    name: 'Science Fiction',
-  },
-  {
-    id: '3',
-    name: 'Horror',
-  },
-];
-const ratings = [
-  {
-    id: '1',
-    value: 5,
-    title: 'Great',
-    description: 'This book is great',
-    bookId: '1',
-  },
-  {
-    id: '2',
-    value: 4,
-    title: 'Good',
-    description: 'This book is good',
-    bookId: '1',
-  },
-];
 
 export {
-    books,
-    categories,
-    ratings,
+    movies,
 };
