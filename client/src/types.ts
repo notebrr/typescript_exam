@@ -8,8 +8,6 @@ type Movie = {
 
 }
 
-
-
 type User = {
     isLoggedin: boolean;
     email: string;

@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 
-export default {
-    query: gql`
+export const getMovies =
+    gql`
     query GetMovies {
       movies{
         id
