@@ -11,6 +11,8 @@ export const getMovies =
   `;
 
 
+
+
 export const createMovie = gql`
   mutation CreateMovie($input: MovieInput!) {
     createMovie(input: $input) {

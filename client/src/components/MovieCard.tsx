@@ -20,6 +20,10 @@ export default ({movie}: { movie: Movie }) => {
                 {data && data.movies.map((movie: any) => <div key={movie.id} style={{color:"black"}}>{movie.title}</div>)}
             </div>
 
+            <div>
+                <a href="/create-movie">Create Movie</a>
+            </div>
+
         </div>
     )
 }
