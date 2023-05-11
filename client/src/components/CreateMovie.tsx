@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import myLogo from "../assets/logo.png";
-import {useMutation} from "@apollo/client";
-import {createMovie} from "..";
+import {useMutation, useQuery} from "@apollo/client";
+import {createMovie} from "../queries/queries";
+
 
 function CreateMovie() {
-    const [createMovie, {data, loading, error}] = useMutation(createMovieMutation)
+    const {data, loading, error} = useMutation(createMovie)
     const whiteBackground = { backgroundColor: 'white' };
     const colorBlack = { color: 'black' };
     const [movie, setMovie] = useState({
@@ -21,7 +22,6 @@ function CreateMovie() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        // Handle submitting the movie data
         console.log(movie);
     };
 
