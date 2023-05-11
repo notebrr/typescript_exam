@@ -1,7 +1,7 @@
 type Movie = {
     _id?: string;
     title: string;
-    author: string;
+    director: string;
     rating_average: number;
     url: string;
     description: string;

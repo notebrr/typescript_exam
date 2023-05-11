@@ -1,17 +1,25 @@
 import { gql } from '@apollo/client';
 
-export const getMovies =
-    gql`
-    query GetMovies {
-      movies{
-        id
-        title
-      }
+export const getMovies = gql`
+  query GetMovies {
+    movies {
+      id
+      title
     }
-  `;
+  }
+`;
 
-
-
+export const getMovie = gql`
+  query GetMovie($id: ID!) {
+    movie(id: $id) {
+      id
+      title
+      director
+      url
+      description
+    }
+  }
+`;
 
 export const createMovie = gql`
   mutation CreateMovie($input: MovieInput!) {
@@ -48,4 +56,3 @@ export const deleteMovie = gql`
     }
   }
 `;
-
