@@ -10,12 +10,11 @@ export default {
     }
   },
 
-  deleteMovie: (_parent: never, { id }: Args, { movies }: Context) => {
-    const index = movies.findIndex(movie => movie.id === id);
-    if (index === -1) {
+  deleteMovie: async (_parent: never, { id }: Args, { movies }: Context) => {
+    const index = await movieModel.findByIdAndDelete(id);
+    if (index === null) {
       return false;
     }
-    movies.splice(index, 1);
     return true;
   },
 

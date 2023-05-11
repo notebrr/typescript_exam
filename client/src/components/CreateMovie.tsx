@@ -6,6 +6,7 @@ import {createMovie} from "../queries/queries";
 
 function CreateMovie() {
     const [execCreateMovie, {data, loading, error}] = useMutation(createMovie)
+    const [movieCreated, setMovieCreated] = useState(false);
     const whiteBackground = { backgroundColor: 'white' };
     const colorBlack = { color: 'black' };
 
@@ -34,6 +35,7 @@ function CreateMovie() {
                 }
             }
         })
+        setMovieCreated(true)
     };
 
     return (
@@ -65,6 +67,8 @@ function CreateMovie() {
             <br/>
             <button type="submit">Submit</button>
         </form>
+
+            {movieCreated ? <p style={colorBlack}>Film oprettet</p> : <p></p>}
         </div>
     );
 }

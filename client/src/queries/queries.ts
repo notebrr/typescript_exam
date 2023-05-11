@@ -6,6 +6,9 @@ export const getMovies =
       movies{
         id
         title
+        director
+        url
+        description
       }
     }
   `;
@@ -39,13 +42,8 @@ export const updateMovie = gql`
 
 export const deleteMovie = gql`
   mutation DeleteMovie($id: ID!) {
-    deleteMovie(id: $id) {
-      id
-      title
-      director
-      url
-      description
-    }
+    deleteMovie(id: $id)
   }
+
 `;
 
