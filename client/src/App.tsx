@@ -5,6 +5,7 @@ import MovieCard from "./components/MovieCard";
 import Login from "./components/Login";
 import { ApolloClient, InMemoryCache, ApolloProvider, gql } from '@apollo/client';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
+import CreateMovie from "./components/CreateMovie";
 
 
 const client = new ApolloClient({
@@ -21,7 +22,7 @@ function App() {
             <ApolloProvider client={client}>
                 <Routes>
                     <Route path="/" element={<MovieCard />}/>
-
+                    <Route path="/create-movie" element={<CreateMovie />}/>
                 </Routes>
             </ApolloProvider>
 

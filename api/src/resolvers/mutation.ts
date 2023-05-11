@@ -1,16 +1,10 @@
 // import { movies, ratings } from '../data';
 import { Movie, Context, Args } from '../types';
-
+import movieModel from '../models/Movie';
 export default {
-  createMovie: (_parent: undefined, { input }: Args, { movies }: Context) => {
+  createMovie: async (_parent: undefined, { input }: Args, { movies }: Context) => {
     if ('director' in input) {
-      const newMovie: Movie = {
-        id: String(movies.length + 1),
-        title: input.title,
-        director: input.director,
-      };
-      movies.push(newMovie);
-      return newMovie;
+      return await movieModel.create(input);
     } else {
       return null;
     }
