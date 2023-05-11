@@ -1,5 +1,5 @@
 type Movie = {
-    id: string;
+    _id?: string;
     title: string;
     author: string;
     rating_average: number;

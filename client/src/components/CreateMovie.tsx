@@ -5,9 +5,10 @@ import {createMovie} from "../queries/queries";
 
 
 function CreateMovie() {
-    const {data, loading, error} = useMutation(createMovie)
+    const [execCreateMovie, {data, loading, error}] = useMutation(createMovie)
     const whiteBackground = { backgroundColor: 'white' };
     const colorBlack = { color: 'black' };
+
     const [movie, setMovie] = useState({
         title: '',
         director: '',
@@ -20,9 +21,19 @@ function CreateMovie() {
         setMovie((prevMovie) => ({ ...prevMovie, [name]: value }));
     };
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        console.log(movie);
+    const handleSubmit = async (event) => {
+        await event.preventDefault();
+        console.log(movie)
+        await execCreateMovie({
+            variables: {
+                input: {
+                    title: movie.title,
+                    director: movie.director,
+                    url: movie.url,
+                    description: movie.description
+                }
+            }
+        })
     };
 
     return (
@@ -37,19 +48,19 @@ function CreateMovie() {
 
         <form onSubmit={handleSubmit}>
             <label htmlFor="title" style={colorBlack}>Title:</label>
-            <input type="text" id="title" name="title" style={whiteBackground} value={movie.title} onChange={handleChange} />
+            <input type="text" id="title" name="title" style={{color:'black', backgroundColor:'white'}} value={movie.title} onChange={(e) => handleChange(e)} />
             <br/>
             <br/>
             <label htmlFor="director" style={colorBlack}>Director:</label>
-            <input type="text" id="director" name="director" style={whiteBackground} value={movie.director} onChange={handleChange} />
+            <input type="text" id="director" name="director" style={{color:'black', backgroundColor:'white'}} value={movie.director} onChange={(e) => handleChange(e)} />
             <br/>
             <br/>
             <label htmlFor="url" style={colorBlack}>Image URL:</label>
-            <input type="text" id="url" name="url" style={whiteBackground} value={movie.url} onChange={handleChange} />
+            <input type="text" id="url" name="url" style={{color:'black', backgroundColor:'white'}} value={movie.url} onChange={(e) => handleChange(e)} />
             <br/>
             <br/>
             <label htmlFor="description" style={colorBlack}>Description:</label>
-            <textarea id="description" name="description" style={whiteBackground} value={movie.description} onChange={handleChange} />
+            <textarea id="description" name="description" style={{color:'black', backgroundColor:'white'}} value={movie.description} onChange={(e) => handleChange(e)} />
             <br/>
             <br/>
             <button type="submit">Submit</button>
