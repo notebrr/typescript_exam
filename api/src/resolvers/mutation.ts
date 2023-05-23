@@ -1,8 +1,9 @@
-// import { movies, ratings } from '../data';
-import { Movie, Context, Args } from '../types';
+import { Movie, Review, Context, MovieArgs, ReviewArgs } from '../types';
 import movieModel from '../models/Movie';
+import reviewModel from "../models/Review";
+
 export default {
-  createMovie: async (_parent: undefined, { input }: Args, { movies }: Context) => {
+  createMovie: async (_parent: undefined, { input }: MovieArgs, { movies }: Context) => {
     if ('director' in input) {
       return await movieModel.create(input);
     } else {
@@ -10,7 +11,7 @@ export default {
     }
   },
 
-  deleteMovie: async (_parent: never, { id }: Args, { movies }: Context) => {
+  deleteMovie: async (_parent: never, { id }: MovieArgs, { movies }: Context) => {
     const index = await movieModel.findByIdAndDelete(id);
     if (index === null) {
       return false;
@@ -18,23 +19,7 @@ export default {
     return true;
   },
 
-  /*
-  updateMovie: (_parent: never, { id, input }: Args, { movies }: Context) => {
-    const index = movies.findIndex(movie => movie.id === id);
-    if (index === -1) {
-      throw new Error('Movie not found');
-    }
-    const movie = movies[index];
-    const updatedMovie = { ...movie, ...input };
-    movies[index] = updatedMovie;
-    return updatedMovie;
-  },
-
-    */
-
-
-
-  updateMovie: async (_parent: never, { id, input }: Args, _context: Context) => {
+  updateMovie: async (_parent: never, { id, input }: MovieArgs, _context: Context) => {
     try {
       const updatedMovie = await movieModel.findByIdAndUpdate(id, input, { new: true });
 
@@ -48,5 +33,23 @@ export default {
     }
   },
 
+  createReview: async (_parent: never, { movieId, input }: ReviewArgs, { movies }: Context) => {
+    const movie = await movieModel.findById(movieId);
+    if (!movie) {
+      throw new Error('Movie not found');
+    }
+
+    // Create a new review object in the database
+    const review = await reviewModel.create(input);
+
+    // Save the review id to the movie's reviews array
+    movie.reviews.push(review._id);
+
+    // Save the movie document with the new review id
+    await movie.save();
+
+    // Return the created review
+    return review;
+  },
 
 };

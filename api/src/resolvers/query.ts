@@ -1,8 +1,8 @@
 // import { movies, categories } from '../data';
-import { Movie, Args, Context } from '../types';
+import { Movie, MovieArgs, Context } from '../types';
 import movieModel from '../models/Movie';
-export default {
-    // movies: (parent, args, context) => movies,
-    movies: async (_parent:never, _args:Args) => await movieModel.find(),
-    movie: async (_parent:never, { id }:Args) => await movieModel.findById(id),
-}
+
+    export default {
+        movies: async (_parent:never, _args:MovieArgs) => await movieModel.find().populate('reviews'),
+        movie: async (_parent:never, { id }:MovieArgs) => await movieModel.findById(id).populate('reviews'),
+    }
