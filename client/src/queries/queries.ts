@@ -55,3 +55,14 @@ export const deleteMovie = gql`
   }
 `;
 
+export const createReview = gql`
+mutation CreateReview($movieId: ID!, $input: ReviewInput!) {
+    createReview(movieId: $movieId, input: $input) {
+        id
+        reviewerName
+        rating
+        comments
+        }
+}`
+;
+

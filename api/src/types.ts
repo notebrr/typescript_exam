@@ -1,8 +1,11 @@
+
+
 type Movie = {
     id: string;
     title: string;
     director: string;
     reviews?: Review[];
+    category?: Category;
 };
 
 type Review = {
@@ -10,6 +13,11 @@ type Review = {
     reviewerName: string;
     rating: number;
     comments: string;
+};
+
+type Category = {
+    id: string;
+    name: string;
 };
 
 type Context = {
@@ -27,4 +35,5 @@ type ReviewArgs = {
     input: Review;
 };
 
-export type { Movie, Context, MovieArgs, ReviewArgs, Review };
+export type { Movie, Context, MovieArgs, ReviewArgs, Review, Category };
+

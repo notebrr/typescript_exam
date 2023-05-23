@@ -7,6 +7,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import CreateMovie from "./components/CreateMovie";
 import UpdateMovie from "./components/UpdateMovie";
 import DeleteMovie from "./components/DeleteMovie";
+import CreateReview from "./components/CreateReview";
 
 
 const client = new ApolloClient({
@@ -26,6 +27,7 @@ function App() {
                     <Route path="/create-movie" element={<CreateMovie />}/>
                     <Route path="/delete-movie" element={<DeleteMovie />}/>
                     <Route path="/update-movie/:id" element={<UpdateMovie />} />
+                    <Route path="/create-review/:id" element={<CreateReview />} />
                 </Routes>
             </ApolloProvider>
 

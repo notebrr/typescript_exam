@@ -5,7 +5,6 @@ const moviesData = [
     url: '...',
     description: '...',
   },
-  // ...other movies...
 ];
 
 const reviewsData = [
@@ -24,7 +23,6 @@ const reviewsData = [
       }
     ]
   },
-  // ...other reviews...
 ];
 
 export { moviesData, reviewsData };
