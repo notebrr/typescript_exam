@@ -1,14 +1,27 @@
 // import { movies, ratings } from '../data';
 import { Movie, Context, Args } from '../types';
 import movieModel from '../models/Movie';
+import categoryModel from "../models/Category";
 export default {
   createMovie: async (_parent: undefined, { input }: Args, { movies }: Context) => {
-    if ('director' in input) {
-      return await movieModel.create(input);
+    if ('director' in input && 'categoryId' in input) {
+      const category = await categoryModel.findById(input.categoryId);
+      if (!category) {
+        throw new Error('Category not found');
+      }
+
+      const newMovie = {
+        ...input,
+        category: category._id,
+      };
+
+      return await movieModel.create(newMovie);
     } else {
       return null;
     }
   },
+
+
 
   deleteMovie: async (_parent: never, { id }: Args, { movies }: Context) => {
     const index = await movieModel.findByIdAndDelete(id);

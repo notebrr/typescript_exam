@@ -1,12 +1,16 @@
 const typeDefs = `
 type Movie {
   id: ID!
-  category: String
+  category: Category
   title: String!
   director: String!
   url: String
   description: String
-  
+}
+
+type Category {
+  id: ID!
+  name: String!
 }
 
 type Query {
@@ -25,8 +29,8 @@ input MovieInput {
   director: String!
   url: String
   description: String
+  categoryId: ID
 }
-
 `;
 
 export default typeDefs;

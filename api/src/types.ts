@@ -1,10 +1,10 @@
-import Category from "./models/Category";
-
 type Movie = {
     id: string;
     title: string;
     director: string;
-    category?: Category[];
+    url: string;
+    description: string;
+    categoryId: string;
 };
 
 type Category = {
@@ -15,8 +15,10 @@ type Category = {
 type Context = {
     movies: Movie[];
 };
+
 type Args = {
     id: string;
-    input: Movie
+    input: Movie;
 };
-export type { Movie, Context, Args };
+
+export type { Movie, Context, Args, Category };

@@ -34,9 +34,14 @@ export const createMovie = gql`
       director
       url
       description
+      category {
+        id
+        name
+      }
     }
   }
 `;
+
 
 export const updateMovie = gql`
   mutation UpdateMovie($id: ID!, $input: MovieInput!) {
@@ -60,6 +65,7 @@ export const deleteMovie = gql`
 export const getCategories = gql`
   query GetCategories {
     categories {
+      id
       name
     }
   }

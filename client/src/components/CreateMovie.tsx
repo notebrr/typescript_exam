@@ -1,20 +1,21 @@
 import React, { useState } from 'react';
 import myLogo from "../assets/logo.png";
 import {useMutation, useQuery} from "@apollo/client";
-import {createMovie} from "../queries/queries";
-
+import {createMovie, getCategories} from "../queries/queries";
 
 function CreateMovie() {
-    const [execCreateMovie, {data, loading, error}] = useMutation(createMovie)
+    const [execCreateMovie, {data, loading, error}] = useMutation(createMovie);
     const [movieCreated, setMovieCreated] = useState(false);
     const whiteBackground = { backgroundColor: 'white' };
     const colorBlack = { color: 'black' };
+    const { loading: categoryLoading, error: categoryError, data: categoryData } = useQuery(getCategories);
 
     const [movie, setMovie] = useState({
         title: '',
         director: '',
         url: '',
-        description: ''
+        description: '',
+        categoryId: ''  // Add a category field
     });
 
     const handleChange = (event) => {
@@ -23,7 +24,7 @@ function CreateMovie() {
     };
 
     const handleSubmit = async (event) => {
-        await event.preventDefault();
+        event.preventDefault();
         console.log(movie)
         await execCreateMovie({
             variables: {
@@ -31,12 +32,18 @@ function CreateMovie() {
                     title: movie.title,
                     director: movie.director,
                     url: movie.url,
-                    description: movie.description
+                    description: movie.description,
+                    categoryId: movie.categoryId,
                 }
             }
         })
-        setMovieCreated(true)
+        ;
+        setMovieCreated(true);
     };
+
+    // Handle loading and error states
+    if (categoryLoading) return <p>Loading...</p>;
+    if (categoryError) return <p>Error :(</p>;
 
     return (
         <div>
@@ -48,25 +55,20 @@ function CreateMovie() {
                 </a>
             </div>
 
-        <form onSubmit={handleSubmit}>
-            <label htmlFor="title" style={colorBlack}>Title:</label>
-            <input type="text" id="title" name="title" style={{color:'black', backgroundColor:'white'}} value={movie.title} onChange={(e) => handleChange(e)} />
-            <br/>
-            <br/>
-            <label htmlFor="director" style={colorBlack}>Director:</label>
-            <input type="text" id="director" name="director" style={{color:'black', backgroundColor:'white'}} value={movie.director} onChange={(e) => handleChange(e)} />
-            <br/>
-            <br/>
-            <label htmlFor="url" style={colorBlack}>Image URL:</label>
-            <input type="text" id="url" name="url" style={{color:'black', backgroundColor:'white'}} value={movie.url} onChange={(e) => handleChange(e)} />
-            <br/>
-            <br/>
-            <label htmlFor="description" style={colorBlack}>Description:</label>
-            <textarea id="description" name="description" style={{color:'black', backgroundColor:'white'}} value={movie.description} onChange={(e) => handleChange(e)} />
-            <br/>
-            <br/>
-            <button type="submit">Submit</button>
-        </form>
+            <form onSubmit={handleSubmit}>
+                {/* ...rest of your form fields */}
+                <label htmlFor="category" style={colorBlack}>Category:</label>
+                <select id="category" name="category" style={whiteBackground} value={movie.category} onChange={handleChange}>
+                    {categoryData.categories.map((category) => (
+                        <option key={category.id} value={category.id}>
+                            {category.name}
+                        </option>
+                    ))}
+                </select>
+                <br/>
+                <br/>
+                <button type="submit">Submit</button>
+            </form>
 
             {movieCreated ? <p style={colorBlack}>Film oprettet</p> : <p></p>}
         </div>
