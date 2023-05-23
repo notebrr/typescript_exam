@@ -20,7 +20,7 @@ function CreateMovie() {
         const { name, value } = event.target;
         setMovie((prevMovie) => ({ ...prevMovie, [name]: value }));
     };
-
+    const categoryId = "646c7f3f5f3b01046b8a210e";
     const handleSubmit = async (event) => {
         await event.preventDefault();
         console.log(movie)
@@ -30,7 +30,8 @@ function CreateMovie() {
                     title: movie.title,
                     director: movie.director,
                     url: movie.url,
-                    description: movie.description
+                    description: movie.description,
+                    categoryId: categoryId.toString()
                 }
             }
         })
