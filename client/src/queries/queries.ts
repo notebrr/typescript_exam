@@ -5,6 +5,7 @@ export const getMovies =
     query GetMovies {
       movies{
         id
+        category
         title
         director
         url
@@ -52,6 +53,15 @@ export const updateMovie = gql`
 export const deleteMovie = gql`
   mutation DeleteMovie($id: ID!) {
     deleteMovie(id: $id)
+  }
+`;
+
+
+export const getCategories = gql`
+  query GetCategories {
+    categories {
+      name
+    }
   }
 `;
 
