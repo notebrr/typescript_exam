@@ -11,7 +11,6 @@ type Movie {
 type Category {
   id: ID!
   name: String!
-  reviews: [Review!]!
 }
 
 type Review {

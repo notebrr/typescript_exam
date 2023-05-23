@@ -3,6 +3,7 @@ import movieModel from '../models/Movie';
 import reviewModel from "../models/Review";
 import categoryModel from "../models/Category";
 
+
 export default {
   createMovie: async (_parent: undefined, { input }: MovieArgs, { movies }: Context) => {
     if ('director' in input && 'categoryId' in input) {
@@ -16,11 +17,16 @@ export default {
         category: category._id,
       };
 
-      return await movieModel.create(newMovie);
+      const movie = await movieModel.create(newMovie);
+      // Populate the category field before returning the movie
+      await movie.populate('category').execPopulate();
+
+      return movie;
     } else {
       return null;
     }
   },
+
 
   deleteMovie: async (_parent: never, { id }: MovieArgs, { movies }: Context) => {
     const index = await movieModel.findByIdAndDelete(id);

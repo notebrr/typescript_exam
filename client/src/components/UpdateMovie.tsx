@@ -20,6 +20,11 @@ function UpdateMovie() {
         description: ''
     });
 
+    interface CategoryType {
+        id: string;
+        name: string;
+    }
+
     const handleChange = (event) => {
         const { name, value } = event.target;
         setMovie((prevMovie) => ({ ...prevMovie, [name]: value }));

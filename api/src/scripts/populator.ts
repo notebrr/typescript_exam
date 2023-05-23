@@ -1,10 +1,9 @@
+import mongoose from 'mongoose';
 
-import { moviesData, reviewsData, category } from '../data';
+import { moviesData, reviewsData, categoriesData } from '../data';
+import Category from "../models/Category";
 import Movie from '../models/Movie';
 import Review from '../models/Review';
-import mongoose from 'mongoose';
-import Category from "../models/Category";
-
 
 const populateDB = async () => {
     try {
@@ -12,10 +11,21 @@ const populateDB = async () => {
         await mongoose.connect('mongodb+srv://rasmustaul:ax2@typescript.4hupe0d.mongodb.net/?retryWrites=true&w=majority', {
         });
 
-        // Insert the movies data into the database
-        await Movie.insertMany(movies);
-        await Category.insertMany(category);
-        const createdMovies = await Movie.insertMany(moviesData);
+        // Insert the category data into the database
+        const createdCategories = await Category.insertMany(categoriesData);
+
+        // Create a map of category names to their IDs
+        const categoryMap = new Map();
+        createdCategories.forEach(category => {
+            categoryMap.set(category.name, category._id);
+        });
+
+        // Assign categoryId to movies and insert them into the database
+        const moviesWithCategoryIds = moviesData.map(movie => ({
+            ...movie,
+            category: categoryMap.get(movie.category), // replace category name with its ID
+        }));
+        const createdMovies = await Movie.insertMany(moviesWithCategoryIds);
 
         // Create a map of movie titles to their IDs
         const movieMap = new Map();

@@ -1,39 +1,41 @@
-type Movie = {
-    id: string;
+import { Document } from "mongoose";
+
+
+interface Category extends Document {
+    id: ObjectId;
+    name: string;
+}
+
+interface Review extends Document {
+    id?: ObjectId;
+    reviewerName: string;
+    rating: number;
+    comments: string;
+}
+
+interface Movie extends Document {
+    id: ObjectId;
     title: string;
     director: string;
     reviews?: Review[];
     category?: Category;
     url: string;
     description: string;
-};
-
-type Category = {
-    id: string;
-    name: string;
-};
-
-type Review = {
-    id?: string;
-    reviewerName: string;
-    rating: number;
-    comments: string;
-};
+}
 
 type Context = {
-    movies: Movie[];
-    reviews: Review[];
+    movies: Partial<Movie>[];
+    reviews: Partial<Review>[];
 };
 
-type MovieArgs = {
+interface MovieArgs {
     id: string;
-    input: Movie;
+    input: Partial<Movie>;
 };
 
-type ReviewArgs = {
+interface ReviewArgs {
     movieId: string;
-    input: Review;
+    input: Partial<Review>;
 };
 
 export type { Movie, Context, MovieArgs, ReviewArgs, Review, Category };
-
