@@ -13,6 +13,7 @@ import Mutation from './resolvers/mutation';
 import Query from './resolvers/query';
 import { movies } from './data';
 import usersRouter from './routes/users';
+import mongoose from "mongoose";
 
 const app = express();
 
@@ -50,12 +51,15 @@ expressMiddleware(server, {
 await new Promise<void>((resolve) => httpServer.listen({ port: 4000 }, resolve));
 console.log(`🚀 GraphQL Server ready at http://localhost:4000/graphql`);
 
-app.use('/api/users', usersRouter);
-console.log(`🚀 Users API ready at http://localhost:4000/api/users`);
+//app.use('/api/users', usersRouter);
+//console.log(`🚀 Users API ready at http://localhost:4000/api/users`);
 
 app.get('*', function(req, res){
   res.send({ status: 404, message: 'Ressource not found' });
 });
+
+mongoose.connect('mongodb+srv://rasmustaul:ax2@typescript.4hupe0d.mongodb.net/?retryWrites=true&w=majority', {
+}).then(()=>console.log("connected to database"));
 
 // Passing an ApolloServer instance to the `startStandaloneServer` function:
 //  1. creates an Express app

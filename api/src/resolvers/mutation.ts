@@ -1,27 +1,20 @@
 // import { movies, ratings } from '../data';
 import { Movie, Context, Args } from '../types';
-
+import movieModel from '../models/Movie';
 export default {
-  createMovie: (_parent: undefined, { input }: Args, { movies }: Context) => {
+  createMovie: async (_parent: undefined, { input }: Args, { movies }: Context) => {
     if ('director' in input) {
-      const newMovie: Movie = {
-        id: String(movies.length + 1),
-        title: input.title,
-        director: input.director,
-      };
-      movies.push(newMovie);
-      return newMovie;
+      return await movieModel.create(input);
     } else {
       return null;
     }
   },
 
-  deleteMovie: (_parent: never, { id }: Args, { movies }: Context) => {
-    const index = movies.findIndex(movie => movie.id === id);
-    if (index === -1) {
+  deleteMovie: async (_parent: never, { id }: Args, { movies }: Context) => {
+    const index = await movieModel.findByIdAndDelete(id);
+    if (index === null) {
       return false;
     }
-    movies.splice(index, 1);
     return true;
   },
 
