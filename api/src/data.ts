@@ -24,6 +24,7 @@ const movies = [
     description: 'A computer hacker learns from mysterious rebels about the true nature of his reality and his role in the war against its controllers.',
   },
   {
+    category: 'Action',
     title: 'The Shawshank Redemption',
     director: 'Frank Darabont',
     url: 'https://m.media-amazon.com/images/M/MV5BMDFkYTc0MGEtZmNhMC00ZDIzLWFmNTEtODM1ZmRlYWMwMWFmXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_UY1200_CR90,0,630,1200_AL_.jpg',
@@ -31,7 +32,19 @@ const movies = [
   },
 ];
 
+const category = [
+  {
+    name: 'Action',
+  },
+  {
+    name: 'Sci-Fi',
+  },
+  {
+    name: 'Drama',
+  },
+];
 
 export {
     movies,
+    category
 };

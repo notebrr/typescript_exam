@@ -5,6 +5,7 @@ export const getMovies =
     query GetMovies {
       movies{
         id
+        category
         title
         director
         url
@@ -45,5 +46,14 @@ export const deleteMovie = gql`
     deleteMovie(id: $id)
   }
 
+`;
+
+
+export const getCategories = gql`
+  query GetCategories {
+    categories {
+      name
+    }
+  }
 `;
 

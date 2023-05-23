@@ -1,6 +1,7 @@
-import { movies } from '../data';
+import {category, movies} from '../data';
 import Movie from '../models/Movie';
 import mongoose from 'mongoose';
+import Category from "../models/Category";
 
 
 const populateDB = async () => {
@@ -11,6 +12,7 @@ const populateDB = async () => {
 
         // Insert the movies data into the database
         await Movie.insertMany(movies);
+        await Category.insertMany(category);
 
         console.log('Data imported successfully!');
         process.exit(0);

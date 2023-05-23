@@ -40,6 +40,8 @@ export default ({movie}: { movie: Movie }) => {
                         <br/>
                         <img src={movie.url} alt="Image not found" style={{maxWidth:"100px"}}/>
                         <br/>
+                        {movie.category}
+                        <br/>
                         <br/>
                         {movie.title}
                         <br/>

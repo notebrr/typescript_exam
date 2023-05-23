@@ -1,6 +1,7 @@
 const typeDefs = `
 type Movie {
   id: ID!
+  category: String
   title: String!
   director: String!
   url: String
