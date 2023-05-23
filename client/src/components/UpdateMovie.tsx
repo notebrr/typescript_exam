@@ -71,7 +71,7 @@ function UpdateMovie() {
                 <textarea id="description" name="description" style={{color:'black', backgroundColor:'white'}} value={movie.description} onChange={(e) => handleChange(e)} />
                 <br/>
                 <br/>
-                <button type="submit">Submit</button>
+                <button type="submit">button</button>
             </form>
         </div>
     );

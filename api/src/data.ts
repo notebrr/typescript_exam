@@ -1,4 +1,4 @@
-const movies = [
+const moviesData = [
   {
     title: 'Inception',
     director: 'Christopher Nolan',
@@ -32,6 +32,24 @@ const movies = [
   },
 ];
 
+const reviewsData = [
+  {
+    movieTitle: 'Inception',
+    reviews: [
+      {
+        reviewerName: 'John Doe',
+        rating: 5,
+        comments: 'Amazing movie!'
+      },
+      {
+        reviewerName: 'Jane Smith',
+        rating: 4,
+        comments: 'Great plot and visuals.'
+      }
+    ]
+  },
+];
+
 const category = [
   {
     name: 'Action',
@@ -43,8 +61,4 @@ const category = [
     name: 'Drama',
   },
 ];
-
-export {
-    movies,
-    category
-};
+export { moviesData, reviewsData , category};

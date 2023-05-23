@@ -2,9 +2,10 @@ type Movie = {
     id: string;
     title: string;
     director: string;
+    reviews?: Review[];
+    category?: Category;
     url: string;
     description: string;
-    categoryId: string;
 };
 
 type Category = {
@@ -12,13 +13,27 @@ type Category = {
     name: string;
 };
 
-type Context = {
-    movies: Movie[];
+type Review = {
+    id?: string;
+    reviewerName: string;
+    rating: number;
+    comments: string;
 };
 
-type Args = {
+type Context = {
+    movies: Movie[];
+    reviews: Review[];
+};
+
+type MovieArgs = {
     id: string;
     input: Movie;
 };
 
-export type { Movie, Context, Args, Category };
+type ReviewArgs = {
+    movieId: string;
+    input: Review;
+};
+
+export type { Movie, Context, MovieArgs, ReviewArgs, Review, Category };
+

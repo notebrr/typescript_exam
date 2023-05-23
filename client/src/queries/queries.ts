@@ -47,7 +47,6 @@ export const createMovie = gql`
   }
 `;
 
-
 export const updateMovie = gql`
   mutation UpdateMovie($id: ID!, $input: MovieInput!) {
     updateMovie(id: $id, input: $input) {
@@ -65,6 +64,17 @@ export const deleteMovie = gql`
     deleteMovie(id: $id)
   }
 `;
+
+export const createReview = gql`
+mutation CreateReview($movieId: ID!, $input: ReviewInput!) {
+    createReview(movieId: $movieId, input: $input) {
+        id
+        reviewerName
+        rating
+        comments
+        }
+}`
+;
 
 
 export const getCategories = gql`

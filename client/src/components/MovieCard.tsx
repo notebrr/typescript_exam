@@ -12,7 +12,6 @@ export default ({movie}: { movie: Movie }) => {
     const navigate = useNavigate();
     const [execUpdateMovie, { data: updateData, loading: updateLoading, error: updateError }] = useMutation(updateMovie);
 
-
     if (loading) { return <p>Loading...</p> }
 
     const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -26,9 +25,12 @@ export default ({movie}: { movie: Movie }) => {
     const handleButtonClick = async (id: number) => {
         console.log(`Button clicked for movie with ID ${id}`);
         navigate(`/update-movie/${id}`)
-
     };
 
+    const handleAddReview = (id: number) => {
+        console.log(`Add Review clicked for movie with ID ${id}`);
+        navigate(`/create-review/${id}`)
+    };
 
     return (
         <div>
@@ -60,8 +62,6 @@ export default ({movie}: { movie: Movie }) => {
                         <br/>
                         <br/>
                         {movie.description}
-
-                        <br/>
                         <br/>
                         <hr/>
                     </div>
@@ -70,6 +70,9 @@ export default ({movie}: { movie: Movie }) => {
                     <div key={movie.id} style={{ color: "black" }}>
                         {movie.title}
                         <button onClick={() => handleButtonClick(movie.id)}>Button</button>
+                        <br/>
+                        <button onClick={() => handleAddReview(movie.id)}>Add Review</button>
+
                     </div>
                 ))}
             </div>
