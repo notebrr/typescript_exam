@@ -17,6 +17,10 @@ const movieSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    category: {
+        type: String,
+        ref: 'Category',
+    },
 });
 
 const movieModel = mongoose.model('Movie', movieSchema);
