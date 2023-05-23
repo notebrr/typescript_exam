@@ -49,6 +49,7 @@ export default ({movie}: { movie: Movie }) => {
                 />
                 {filteredMovies && filteredMovies.map((movie: any) =>
                     <div key={movie.id} style={{color:"black"}}>
+                        {movie.category?.name}
                         <br/>
                         <img src={movie.url} alt="Image not found" style={{maxWidth:"100px"}}/>
                         <br/>

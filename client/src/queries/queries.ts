@@ -5,7 +5,9 @@ export const getMovies =
     query GetMovies {
       movies{
         id
-        category
+        category {
+        name
+        }
         title
         director
         url
@@ -18,6 +20,9 @@ export const getMovie = gql`
   query GetMovie($id: ID!) {
     movie(id: $id) {
       id
+       category {
+        name
+       }
       title
       director
       url
